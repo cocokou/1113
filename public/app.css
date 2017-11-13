@@ -1,0 +1,18 @@
+.head {
+    background-color: #888;
+    height: 50px;
+    width:100%;
+    color: #fff;
+    font-size: 2em;
+    /* position: fixed;
+    top:0; */
+    /*z-index: 1*/
+}
+.logo {
+    width:50px;
+}
+.nav li{
+    list-style: none;
+    float: left;
+    padding: 15px;
+}
