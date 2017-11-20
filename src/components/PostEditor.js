@@ -1,12 +1,5 @@
- 
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  // Button,
-  // Divider,
-  Form,
-} from 'semantic-ui-react'
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import { updatePost } from '../actions/posts'
@@ -29,7 +22,8 @@ class PostCreator extends Component {
     this.setState({ inputTitle: event.target.value })
   }
 
-  onPostSubmit = (event, { value }) => {
+  onPostSubmit = (event) => {
+  // onPostSubmit = (event, { value }) => {
     const { post, onSubmit, updatePost } = this.props
     const { inputContent, inputTitle } = this.state
 
@@ -63,7 +57,15 @@ class PostCreator extends Component {
 
     return (
       <div>  
-        <Form style={formStyles} onSubmit={this.onPostSubmit}>
+        <form>
+          <Divider />
+            <label>Post title</label>
+            <input value={inputTitle} onChange={this.handleTitleChange} />
+            <label>Post content</label>
+            <textarea  value={inputContent} onChange={this.handleContentChange} />
+          <Button onClick={this.onPostSubmit}>Post</Button>
+        </form>
+        {/*<Form style={formStyles} onSubmit={this.onPostSubmit}>
           <Divider />
           <Form.Field>
             <label>Post title</label>
@@ -73,7 +75,7 @@ class PostCreator extends Component {
             <Form.TextArea label='Post content' value={inputContent} onChange={this.handleContentChange} />
           </Form.Field>
           <Button type='submit'>Update!</Button>
-        </Form>
+        </Form>*/}
       </div>
     )
   }

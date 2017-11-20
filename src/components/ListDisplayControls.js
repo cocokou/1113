@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import { Button, Icon, Form, Radio } from 'semantic-ui-react';
-
+// import Button from 'material-ui/Button';
 
 class ListDisplayControls extends Component {
   styles = {
@@ -62,7 +62,8 @@ class ListDisplayControls extends Component {
                   onClick={this.handleDirectionChange}
                 >
                   <Button.Content visible>
-                    <Icon name="caret up" />
+                    {/*<Icon name="caret up" />*/}
+                   <i className="material-icons">keyboard_arrow_up</i>
                   </Button.Content>
                 </Button>
                 :
@@ -72,7 +73,8 @@ class ListDisplayControls extends Component {
                   onClick={this.handleDirectionChange}
                 >
                   <Button.Content visible>
-                    <Icon name="caret down" />
+                    {/*<Icon name="caret down" />*/}
+                    <i className="material-icons">keyboard_arrow_down</i>
                   </Button.Content>
                 </Button>
             }

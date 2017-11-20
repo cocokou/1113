@@ -1,18 +1,13 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
-//import { Button, Divider, Grid, Header, Icon } from 'semantic-ui-react';
-import { Grid, Header, Divider, Icon} from 'semantic-ui-react';
-
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-
-
+import Divider from 'material-ui/Divider';
 import formatTime from '../utils/formatTime';
-
 import AddComment from '../components/AddComment';
 import CommentList from '../components/CommentList';
 import PostEditor from '../components/PostEditor';
-
 import Votes from '../components/Votes';
 
 import { deletePost, updateScore } from '../actions/posts';
@@ -62,47 +57,41 @@ class PostPage extends React.Component {
             onSubmit={this.toggleEdit}
           />
         ) : (
-          <Grid>
-            <Grid.Row>
-              <Grid.Column width={12}>
-                <Header size='medium' content={post.title} />
-                <div>
-                  <Button  onClick={this.toggleEdit}>
-                    {editMode ? 'CANCEL' : 'EDIT'}
+            <Paper>
+
+              <Typography type="headline" component="h3">{post.title}</Typography>
+
+              <div>
+                <Button onClick={this.toggleEdit}>
+                  {editMode ? 'CANCEL' : 'EDIT'}
+                </Button>
+                <Button onClick={this.deletePost}>
+                  DELETE
                   </Button>
-                  <Button  onClick={this.deletePost}>
-                    DELETE
-                  </Button>
-                </div>
-                <Header
-                  sub
-                  size="small"
-                  content={`${formatTime(
-                    post.timestamp
-                  )} by ${post.author}`}
-                  dividing
-                />
-              </Grid.Column>
+              </div>
 
-              <Grid.Column width={4} textAlign="center">
-                <Votes
-                  score={post.voteScore}
-                  updateScore={this.updateScore}
-                />
-              </Grid.Column>
-            </Grid.Row>
+              <Typography type="body1" component="p">
+                {`${formatTime(
+                  post.timestamp
+                )} by ${post.author}`}
+              </Typography>
 
-            <p>{post.body}</p>
-          </Grid>
-        )}
+              <Votes
+                score={post.voteScore}
+                updateScore={this.updateScore}
+              />
 
-        <Divider hidden horizontal section />
+              <p>{post.body}</p>
+              <Divider />
 
-        <h5>Comments: {this.props.commentCount}</h5>
-        <AddComment parentId={post.id} />
+              <h5>Comments: {this.props.commentCount}</h5>
+              <AddComment parentId={post.id} />
 
-        {post.id && <CommentList post_id={post.id} />}
-        <Divider section />
+              {post.id && <CommentList post_id={post.id} />}
+              <Divider />
+
+            </Paper>
+          )}
 
       </div>
     );
@@ -113,7 +102,7 @@ const mapStateToProps = (state, props) => {
   const post_id = props.match.params.post_id;
   //const category = props.match.params.category;
   let post = state.posts[post_id] || emptyPost;
-  let commentCount=Object.keys(state.comments).length;
+  let commentCount = Object.keys(state.comments).length;
   return {
     post_id,
     //category,

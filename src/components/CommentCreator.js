@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import Button from 'material-ui/Button';
 import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import createUUID from '../utils/createUUID';
@@ -29,7 +29,7 @@ class AddComment extends Component {
     this.setState({ inputContent: event.target.value });
   };
 
-  onPostSubmit = (event, { value }) => {
+  handleSubmit = (event, { value }) => {
     const { parentId, addComment } = this.props;
     const { inputContent, inputAuthor } = this.state;
 
@@ -82,24 +82,24 @@ class AddComment extends Component {
             {headerText}
           </Button>
         </div>
-        <Form style={styles.form} onSubmit={this.onPostSubmit}>
+        <form style={styles.form} onSubmit={this.handleSubmit}>
           <Divider />
-          <Form.Field>
+
             <label>your name</label>
             <input
               value={inputAuthor}
               onChange={this.handleAuthorChange}
             />
-          </Form.Field>
-          <Form.Field>
-            <Form.TextArea
+
+          
+            <textarea
               label="Comment content"
               value={inputContent}
               onChange={this.handleContentChange}
             />
-          </Form.Field>
-          <Button type="submit">Send!</Button>
-        </Form>
+  
+          <Button onClick={this.handleSubmit}>Send!</Button>
+        </form>
       </Card>
     );
   }
